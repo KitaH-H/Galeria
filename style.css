@@ -1,0 +1,304 @@
+/* ==========================================================================
+   Parvenir Gallery – Nyitóképernyő és betűanimációk
+   ========================================================================== */
+/* Egységméret: a magasság és a szélesség közül a kisebbhez igazodik */
+:root { --u: min(1vh, 0.68vw); }
+
+@property --font-color { syntax: '<color>';      inherits: true; initial-value: white; }
+@property --glow       { syntax: '<percentage>'; inherits: true; initial-value: 75%; }
+
+body {
+    background-color: black;
+    overflow: hidden;
+    animation: scrolling 1.5s cubic-bezier(0.16, 1, 0.3, 1) 3s forwards;
+}
+
+#opening-screen {
+    height: calc(100vh - 20px);
+    width: calc(100vw - 10px);
+    --font-color: white;
+    --thickness: calc(1.5 * var(--u));
+    --glow: 75%;
+    --h-cap: calc(25 * var(--u));
+    --h-x: calc(12.5 * var(--u));
+    --ring-x: calc(var(--h-x) - 2 * var(--thickness));
+}
+
+#opening-text {
+    position: relative;
+    z-index: 1;
+    margin: auto;
+    translate: 0 calc(20vh - 10px);
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+    height: 60vh;
+    width: 80vw;
+}
+
+.letter-line {
+    height: var(--h-cap);
+    width: 80vw;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: baseline;
+    gap: calc(2 * var(--u));
+}
+#line-1 { justify-content: flex-start; --base: 0.8s; }
+#line-2 { justify-content: flex-end;   --base: 2.2s; }
+
+/* ---------------- Betűk közös alapjai ---------------- */
+.letter { height: var(--h-x); width: calc(11 * var(--u)); }
+.letter > div {
+    --k: 0;
+    --sd: calc(var(--base) + mod(var(--g), 8) * 0.12s + var(--k) * 0.14s);
+    animation: draw-v 0.9s cubic-bezier(0.65, 0, 0.35, 1) var(--sd) backwards;
+}
+.letter > div:nth-child(2) { --k: 1; animation-name: iris; }
+.letter > div:nth-child(3) { --k: 2; animation-name: draw-h; }
+
+/* Függőleges szár és ív alapértelmezett stílusai */
+.letter > :nth-child(1) {
+    width: var(--thickness);
+    height: var(--h-x);
+    background-color: var(--font-color);
+    float: left;
+}
+.letter > :nth-child(2) {
+    border: var(--thickness) var(--font-color) solid;
+    height: var(--ring-x);
+    width: var(--ring-x);
+    background-color: black;
+}
+
+/* Egyedi betűformák */
+.letter-P { height: var(--h-cap); width: calc(12.5 * var(--u)); margin-right: calc(-2 * var(--u)); }
+.letter-P > :nth-child(1) { height: var(--h-cap); }
+.letter-P > :nth-child(2) { border-radius: 0 50% 50% 0; }
+
+.letter-a { width: calc(12.5 * var(--u)); }
+.letter-a > :nth-child(1) { float: right; }
+.letter-a > :nth-child(2) { border-radius: 100%; }
+
+.letter-r > :nth-child(2) { border-top-left-radius: 100%; border-bottom: none; border-right: none; }
+
+.letter-v > :nth-child(1) { height: calc(12 * var(--u)); }
+.letter-v > :nth-child(2) {
+    border-bottom-right-radius: 100%;
+    border-top: none;
+    border-left: none;
+    height: calc(var(--h-x) - var(--thickness));
+}
+
+.letter-e { width: calc(12.5 * var(--u)); }
+.letter-e > :nth-child(1) {
+    height: var(--thickness);
+    width: calc(12 * var(--u));
+    float: inline-end;
+    transform: translateY(calc(var(--h-x) / 2 - var(--thickness) / 2)) translateX(calc(-0.25 * var(--u)));
+    animation-name: draw-h;
+}
+.letter-e > :nth-child(2) { border-radius: 50% 50% 0 50%; }
+.letter-e > :nth-child(3) {
+    height: calc(var(--h-x) / 2);
+    width: calc(var(--h-x) / 2);
+    background-color: black;
+    float: inline-end;
+    transform: translateY(calc(var(--thickness) / 2 - var(--h-x) / 2 + 1px));
+    animation: none;
+}
+
+.letter-n > :nth-child(2) {
+    border-radius: 100%;
+    border-bottom: none;
+    border-left: none;
+    height: calc(var(--h-x) - var(--thickness));
+}
+
+.letter-i { width: calc(4 * var(--u)); }
+.letter-i > :nth-child(1) {
+    border-radius: 100%;
+    border: calc(var(--thickness) / 2) var(--font-color) solid;
+    height: var(--thickness);
+    width: var(--thickness);
+    background-color: black;
+    float: none;
+    margin: auto;
+    transform: translateY(calc(-1.5 * var(--u)));
+    animation-name: iris;
+}
+.letter-i > :nth-child(2) {
+    border: none;
+    width: var(--thickness);
+    height: calc(10 * var(--u));
+    background-color: var(--font-color);
+    margin: auto;
+    transform: translateY(calc(-0.5 * var(--u)));
+    --k: 1;
+    animation-name: draw-v;
+}
+
+.letter-G { height: var(--h-cap); width: var(--h-cap); }
+.letter-G > :nth-child(1) {
+    border-radius: 100%;
+    border: var(--thickness) var(--font-color) solid;
+    height: calc(var(--h-cap) - 2 * var(--thickness));
+    width: calc(var(--h-cap) - 2 * var(--thickness));
+    background-color: black;
+    float: none;
+    animation-name: iris;
+    --k: 1;
+}
+.letter-G > :nth-child(2) {
+    border: none;
+    border-bottom: var(--thickness) var(--font-color) solid;
+    height: calc(10 * var(--u));
+    width: calc(10 * var(--u));
+    float: inline-end;
+    transform: translateY(calc(calc(-18.75 * var(--u)) + 5px));
+    animation-name: draw-h;
+    animation-duration: 0.2s;
+    --k: 0;
+}
+
+.letter-l { height: var(--h-cap); width: calc(4 * var(--u)); }
+.letter-l > :nth-child(1) {
+    height: calc(20 * var(--u));
+    float: none;
+    margin: auto;
+    transform: translateY(calc(5 * var(--u)));
+}
+/* Az l-nek nincs ívrésze – az alapértelmezett gyűrű okozta a felesleges négyzeteket */
+.letter-l > :nth-child(2) { display: none; }
+
+.letter-y { height: var(--h-cap); width: calc(12.5 * var(--u)); }
+.letter-y > :nth-child(1) {
+    height: var(--h-cap);
+    float: right;
+    transform: rotate(30deg) translateY(var(--h-x)) translateX(calc(2 * var(--u)));
+}
+.letter-y > :nth-child(2) {
+    border: none;
+    width: var(--thickness);
+    height: calc(13 * var(--u));
+    background-color: var(--font-color);
+    float: left;
+    transform: rotate(-30deg) translateY(var(--h-x)) translateX(calc(-3 * var(--u)));
+}
+
+/* ---------------- Betűk időzített animációi ---------------- */
+#opening-text .letter:nth-child(odd)  { --dir:  1; }
+#opening-text .letter:nth-child(even) { --dir: -1; }
+
+#opening-text .letter {
+    animation:
+        enter 1.5s cubic-bezier(0.16, 1, 0.3, 1) calc(var(--base) + mod(var(--g), 8) * 0.12s) backwards,
+        tint  9s   ease-in-out                   calc(4.4s + var(--g) * 0.08s)                 infinite,
+        float 6s   ease-in-out                   calc(5.2s + var(--g) * 0.12s)                 infinite;
+}
+
+@keyframes enter {
+    from { opacity: 0; translate: 0 calc(var(--dir) * -10vh); rotate: calc(var(--dir) * 18deg); scale: 0.4; filter: blur(1.6vh); }
+    to   { opacity: 1; translate: 0 0; rotate: 0deg; scale: 1; filter: blur(0); }
+}
+@keyframes scrolling { 0%, 99% { overflow-y: hidden; } 100% { overflow-y: scroll; } }
+@keyframes tint      { 0%, 30%, 100% { --font-color: white; } 12% { --font-color: #f2cf8e; } }
+@keyframes float     { 0%, 100% { translate: 0 0; } 50% { translate: 0 -0.8vh; } }
+@keyframes draw-v    { from { clip-path: inset(0 0 100% 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes draw-h    { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+@keyframes iris      { from { clip-path: circle(0% at 50% 50%); } to { clip-path: circle(75% at 50% 50%); } }
+
+/* ---------------- Háttérfények, vonalak, porszemek ---------------- */
+#opening-screen::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 2; /* a betűk fölött, hogy a fekete takaró-elemek ne látszódjanak a fényes háttéren */
+    pointer-events: none;
+    background: radial-gradient(ellipse at center,
+        rgba(242, 207, 142, .20) 0%,
+        rgba(242, 207, 142, .06) calc(var(--glow) * .55),
+        transparent var(--glow));
+    animation: spot 3.2s ease-out .2s backwards, breathe 7s ease-in-out 3.4s infinite;
+}
+@keyframes spot    { from { --glow: 0%; opacity: 0; } to { --glow: 75%; opacity: 1; } }
+@keyframes breathe { 0%, 100% { opacity: 1; } 50% { opacity: .55; } }
+
+#opening-screen::after {
+    content: "";
+    position: fixed;
+    top: -10vh;
+    bottom: -10vh;
+    left: 0;
+    width: 22vw;
+    z-index: 2;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, rgba(242, 207, 142, 0.22) 50%, transparent);
+    transform: translateX(-40vw) skewX(-18deg);
+    animation: beam 9s cubic-bezier(0.4, 0, 0.2, 1) 4.4s infinite;
+}
+@keyframes beam { 0% { transform: translateX(-40vw) skewX(-18deg); } 22%, 100% { transform: translateX(130vw) skewX(-18deg); } }
+
+body::before, body::after {
+    content: "";
+    position: fixed;
+    left: 50%;
+    width: 60vw;
+    height: 1px;
+    translate: -50% 0;
+    scale: 0 1;
+    z-index: 0;
+    pointer-events: none;
+    background: linear-gradient(90deg, transparent, #f2cf8e, transparent);
+    animation: rule 1.8s cubic-bezier(0.65, 0, 0.35, 1) .3s forwards;
+}
+body::before { top: 12vh; }
+body::after  { bottom: 12vh; animation-delay: 0.5s; }
+@keyframes rule { to { scale: 1 1; } }
+
+#dust {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    animation: dust-in 3s ease-out 1s backwards;
+}
+#dust span {
+    position: absolute;
+    bottom: -4vh;
+    border-radius: 50%;
+    background: #f2cf8e;
+    opacity: 0;
+    animation: rise linear infinite;
+}
+@keyframes rise {
+    0%   { transform: translate(0, 0); opacity: 0; }
+    10%  { opacity: 0.8; }
+    90%  { opacity: 0.5; }
+    100% { transform: translate(var(--dx), -110vh); opacity: 0; }
+}
+@keyframes dust-in { from { opacity: 0; } to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; }
+    #dust { display: none; }
+    body::before, body::after { scale: 1 1; }
+}
+
+#section1 {
+    margin-top: 40vh;
+    height: 100vh;
+    width: 100vw;
+    --font-color: white;
+}
+#section1 > div {
+    text-align: center;
+    z-index: 1;
+    position: relative;
+    font-size: 3em;
+    color: var(--font-color);
+    font-family: cursive;
+}
