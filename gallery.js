@@ -227,6 +227,18 @@ function porszemekLetrehozasa() {
 betukLetrehozasa();
 porszemekLetrehozasa();
 
+window.addEventListener("scroll", ()=>{
+  if (this.scrollY > 1100 && !egy('#baroff')){
+    let el = document.createElement('style');
+    el.id = "baroff";
+    el.innerHTML = 'body::before, body::after {visibility:hidden}';
+    document.body.before(el);
+  }
+  else if (this.scrollY <= 1100 && egy('#baroff')){
+    egy('html').removeChild(egy('#baroff'));
+  }
+})
+
 /* ==========================================================================
    5. Időutazás
    ========================================================================== */
