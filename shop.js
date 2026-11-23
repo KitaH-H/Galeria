@@ -24,7 +24,7 @@ const { FESTMENYEK, kepUrl } = GALERIA;
    1. Beállítások és árak
    ========================================================================== */
 const BEALLITASOK = {
-  email: 'info@parvenir.example',
+  email: 'info@parvenir.com',
   szallitas: { dij: 1990, ingyenesFelett: 60000, ido: '3–5 munkanap' },
   // Ha a Node szerver fut, ide jön a címe (pl. 'http://localhost:8787/api/assistant').
   // Üresen hagyva az előre megírt, szabályalapú válaszok működnek.
