@@ -300,5 +300,5 @@ body::after  { bottom: 12vh; animation-delay: 0.5s; }
     position: relative;
     font-size: 3em;
     color: var(--font-color);
-    font-family: cursive;
+    font-family: Poiret One, Josefin Sans;
 }
