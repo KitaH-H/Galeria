@@ -97,7 +97,7 @@ input[type=range]::-moz-range-thumb {
 
 .card:hover .ph, .card:focus-visible .ph { border-color: var(--gold-d); box-shadow: 0 0 0 1px rgba(242, 207, 142, .35), 0 24px 90px rgba(242, 207, 142, .14); }
 .card:hover img { transform: scale(1.04); }
-.grid:hover .card:not(:hover) { opacity: .55; }
+.grid:hover .card:not(:hover) { opacity: 0.55; }
 .card.out:not(:hover):not(:focus-visible) { opacity: .16 !important; filter: grayscale(1); }
 .card.out:hover, .card.out:focus-visible { opacity: 1; filter: none; }
 
@@ -228,7 +228,7 @@ dt { color: var(--mute); } dd, .d { margin: 0; }
 .h4 { margin: 22px 0 8px; }
 .note { background: rgba(242, 207, 142, .08); border: 1px solid rgba(242, 207, 142, .25); padding: 10px 12px; font-size: 14px; margin: 0 0 14px; }
 .fld { display: grid; gap: 5px; margin-bottom: 12px; font-size: 13px; color: var(--mute); }
-.fld input, .fld select, .fld textarea { background: var(--panel); border: 1px solid var(--line); color: var(--ink); padding: 10px 12px; font: 300 15px var(--sans); border-radius: 0; width: 100%; min-width: 0; }
+.fld input, .fld select, .fld textarea { background: var(--panel); border: 1px solid var(--line); color: var(--ink); padding: 10px 12px; font: 300 15px var(--sans); border-radius: 0; width: 80%; min-width: 0; }
 .two { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .err { color: #ff9c8a; font-size: 13px; min-height: 1.3em; margin: 2px 0 8px; }
 
