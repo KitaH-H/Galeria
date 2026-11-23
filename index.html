@@ -12,10 +12,8 @@
     <link rel="stylesheet" href="gallery.css">
 </head>
 <body>
-    <!-- ================= Nyitóképernyő ================= -->
     <div id="opening-screen">
         <div id="opening-text">
-            <!-- A betűket a gallery.js rakja össze a data-word alapján -->
             <div id="line-1" class="letter-line" data-word="Parvenir" data-offset="0"></div>
             <div id="line-2" class="letter-line" data-word="Gallery" data-offset="8"></div>
         </div>
@@ -25,9 +23,9 @@
 
     <section id="section1">
         <div>
-            <h1>Meet the Gallery of the future</h1>
-            <p>In digital format, so the art can transcend time,</p>
-            <p>and be with you <i style="color: gold;">anytime, anywhere,</i> in any number of copies.</p>
+            <h1>Ismerd meg a jövő galériáját</h1>
+            <p>Digitális formátumban – hogy a művészet túlléphessen az idő korlátain,</p>
+            <p>és veled lehessen <i style="color: gold;">bármikor, bárhol,</i> akárhány példányban.</p>
         </div>
     </section>
 
@@ -68,7 +66,7 @@
                     <button class="chip" type="button" data-f="fav" aria-pressed="false">♥ Gyűjteményem (<span id="favn">0</span>)</button>
                 </div>
                 <input class="search" id="q" type="search" placeholder="Keresés…" aria-label="Keresés a művek között">
-                <button class="tool" id="rnd" type="button">Lepj meg</button>
+                <button class="tool" id="rnd" type="button">Meglepj</button>
                 <button class="tool" id="lampbtn" type="button" aria-pressed="false">Szobalámpa</button>
             </div>
 
@@ -78,7 +76,7 @@
     </main>
 
     <footer class="g-foot">
-        <p>Parvenir Gallery · info@parvenir.com</p>
+        <p>Parvenir Gallery · info@parvenir.example</p>
     </footer>
 
     <!-- Szobalámpa fénykör -->
@@ -124,7 +122,7 @@
                     <button class="chip" type="button" data-mat="1" aria-pressed="true">Keskeny</button>
                     <button class="chip" type="button" data-mat="2" aria-pressed="false">Széles</button>
                 </div>
-                <label class="chk"><input type="checkbox" id="plqChk" checked> Felirat a kép alatt</label>
+                <label class="chk"><input type="checkbox" id="plqChk" checked> Cédula a kép alatt</label>
             </div>
 
             <!-- A „Nyomat vásárlása” blokkot a shop.js szúrja be ide, az .acts elé -->
@@ -140,10 +138,12 @@
                 <button class="tool" id="prev" type="button">← Előző</button>
                 <button class="tool" id="next" type="button">Következő →</button>
             </div>
+            <div class="pnote" id="dlnote" aria-live="polite"></div>
+
         </aside>
     </div>
 
-    <!-- A gallery.js előbb fusson, a shop.js a window.GALERIA-t használja -->
+
     <script src="gallery.js"></script>
     <script src="shop.js"></script>
 </body>
