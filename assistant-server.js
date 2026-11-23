@@ -107,4 +107,3 @@ http.createServer(async (keres, valasz) => {
 }).listen(PORT, () => {
   if (!API_KULCS) console.warn('Figyelem: nincs ANTHROPIC_API_KEY beállítva.');
   console.log(`Asszisztens: http://localhost:${PORT}/api/assistant`);
-});
